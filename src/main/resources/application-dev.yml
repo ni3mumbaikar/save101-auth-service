@@ -1,0 +1,12 @@
+spring:
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        globally_quoted_identifiers: true
+        dialect: org.hibernate.dialect.OracleDialect
+  datasource:
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+    driver: oracle.jdbc.driver.OracleDriver
+    url: jdbc:oracle:thin:@t6ld3x3zixajdz30_medium?TNS_ADMIN=C:/db
