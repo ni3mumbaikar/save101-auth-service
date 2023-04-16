@@ -3,6 +3,7 @@ package ind.ni3mumbaikar.microservices.authservice
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
+
 @SpringBootApplication
 class AuthServiceApplication
 

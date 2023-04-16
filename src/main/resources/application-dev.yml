@@ -1,12 +1,17 @@
+server:
+  port: 8081
+
 spring:
   jpa:
     show-sql: true
+    generate-ddl: true
     properties:
       hibernate:
         globally_quoted_identifiers: true
         dialect: org.hibernate.dialect.OracleDialect
+        ddl-auto: update
   datasource:
     username: ${DB_USERNAME}
     password: ${DB_PASSWORD}
     driver: oracle.jdbc.driver.OracleDriver
-    url: jdbc:oracle:thin:@t6ld3x3zixajdz30_medium?TNS_ADMIN=C:/db
+    url: jdbc:oracle:thin:@t6ld3x3zixajdz30_medium?TNS_ADMIN=${WALLET_PATH}

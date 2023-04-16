@@ -22,7 +22,6 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
-//	implementation("com.oracle.database.jdbc:ojdbc10:19.18.0.0")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.springframework.security:spring-security-test")
 	runtimeOnly("com.oracle.database.jdbc:ojdbc8:21.1.0.0") {
@@ -33,6 +32,9 @@ dependencies {
 	runtimeOnly ("com.oracle.database.security:oraclepki:21.1.0.0")
 	runtimeOnly ("com.oracle.database.security:osdt_cert:21.1.0.0")
 	runtimeOnly ("com.oracle.database.security:osdt_core:21.1.0.0")
+	implementation("io.jsonwebtoken:jjwt-jackson:0.11.5")
+	runtimeOnly("io.jsonwebtoken:jjwt-impl:0.11.5")
+
 }
 
 tasks.withType<KotlinCompile> {
