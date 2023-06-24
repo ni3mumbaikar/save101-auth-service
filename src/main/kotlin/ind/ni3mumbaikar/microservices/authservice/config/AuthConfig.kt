@@ -46,7 +46,6 @@ class AuthConfig {
     }
 
     @Bean
-    @Throws(Exception::class)
     fun authenticationManager(config: AuthenticationConfiguration): AuthenticationManager {
         return config.authenticationManager
     }
