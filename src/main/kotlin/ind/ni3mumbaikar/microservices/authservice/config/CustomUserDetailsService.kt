@@ -2,6 +2,8 @@ package ind.ni3mumbaikar.microservices.authservice.config
 
 import ind.ni3mumbaikar.microservices.authservice.entity.UserCredential
 import ind.ni3mumbaikar.microservices.authservice.repository.UserCredentialRepository
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.security.core.userdetails.UserDetailsService
@@ -11,16 +13,19 @@ import java.util.*
 
 @Component
 class CustomUserDetailsService : UserDetailsService {
+
+    private var logger: Logger = LoggerFactory.getLogger(CustomUserDetails::class.java)
+
     @Autowired
-    private val repository: UserCredentialRepository? = null
+    private lateinit var userCredentialRepository: UserCredentialRepository
 
     @Throws(UsernameNotFoundException::class)
-    override fun loadUserByUsername(username: String): UserDetails? {
-        val credential: UserCredential? = repository!!.findByName(username)
+    override fun loadUserByUsername(email: String): UserDetails? {
+        val credential: UserCredential? = userCredentialRepository.findByEmail(email)
         if (credential != null) {
             return CustomUserDetails(credential)
         } else {
-            throw Exception("Customer Not Found / Invalid Customer Name")
+            throw UsernameNotFoundException("User  Not Found / Invalid User Name")
         }
     }
 }

@@ -1,14 +1,13 @@
 package ind.ni3mumbaikar.microservices.authservice.entity
 
-import jakarta.persistence.*
+import org.springframework.data.annotation.Id
+import org.springframework.data.relational.core.mapping.Table
 
-@Table(name = "all_users")
-@Entity
+
+@Table(name = "USER_CREDENTIALS")
 class UserCredential {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id = 0
-    var name: String? = null
-    var email: String? = null
+    var credId: Number? = null
+    var userId: Number? = null
     var password: String? = null
 }

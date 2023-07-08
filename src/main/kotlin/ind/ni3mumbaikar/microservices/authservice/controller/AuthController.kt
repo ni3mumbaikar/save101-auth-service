@@ -1,7 +1,7 @@
 package ind.ni3mumbaikar.microservices.authservice.controller
 
 import ind.ni3mumbaikar.microservices.authservice.dto.AuthRequest
-import ind.ni3mumbaikar.microservices.authservice.entity.UserCredential
+import ind.ni3mumbaikar.microservices.authservice.dto.UserRegisterDto
 import ind.ni3mumbaikar.microservices.authservice.service.AuthService
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*
 @RequestMapping("/auth")
 class AuthController(private var authService: AuthService) {
 
-    @PostMapping("/token")
+    @PostMapping("/login")
     fun getToken(@RequestBody authRequest: AuthRequest): String? {
         return authService.getToken(authRequest)
     }
@@ -27,8 +27,11 @@ class AuthController(private var authService: AuthService) {
     }
 
     @PostMapping("/register")
-    fun saveUser(@RequestBody credential: UserCredential): String? {
-        return authService.saveUser(credential)
+    fun saveUser(@RequestBody credential: UserRegisterDto): HttpStatus? {
+        if (authService.saveUser(credential)) {
+            return HttpStatus.OK
+        }
+        return HttpStatus.BAD_REQUEST
     }
 
 }

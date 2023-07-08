@@ -6,12 +6,12 @@ import org.springframework.security.core.userdetails.UserDetails
 
 
 class CustomUserDetails(userCredential: UserCredential) : UserDetails {
-    private var username: String? = null
+    private var userId: String? = null
     private var password: String? = null
 
     init {
         this.password = userCredential.password
-        this.username = userCredential.name
+        this.userId = userCredential.userId.toString()
     }
 
     override fun getAuthorities(): Collection<GrantedAuthority?>? {
@@ -23,7 +23,7 @@ class CustomUserDetails(userCredential: UserCredential) : UserDetails {
     }
 
     override fun getUsername(): String? {
-        return this.username
+        return this.userId
     }
 
     override fun isAccountNonExpired(): Boolean {

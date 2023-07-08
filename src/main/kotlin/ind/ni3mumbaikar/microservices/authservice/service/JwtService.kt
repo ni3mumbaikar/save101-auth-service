@@ -13,7 +13,7 @@ import java.util.*
 
 @Component
 class JwtService {
-    val secretKey: String = System.getenv("SECRET_KEY") ?: "KEY_NOT_FOUND"
+    val secretKey: String? = System.getenv("SECRET_KEY") ?: null
 
     private var logger: Logger = LoggerFactory.getLogger(JwtService::class.java)
 

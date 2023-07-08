@@ -1,11 +1,14 @@
 package ind.ni3mumbaikar.microservices.authservice.repository
 
 import ind.ni3mumbaikar.microservices.authservice.entity.UserCredential
-import org.springframework.data.jpa.repository.JpaRepository
+import org.springframework.data.jdbc.repository.query.Query
+import org.springframework.data.repository.CrudRepository
+import org.springframework.data.repository.query.Param
 import org.springframework.stereotype.Repository
 
 @Repository
-interface UserCredentialRepository : JpaRepository<UserCredential, Int> {
-    fun findByName(username: String): UserCredential?
-    fun findByEmail(email: String): UserCredential?
+interface UserCredentialRepository : CrudRepository<UserCredential, Number> {
+
+    @Query("select * from USER_CREDENTIALS where USER_ID = (select user_id from users where email =:email)")
+    fun findByEmail(@Param("email") email: String?): UserCredential?
 }
